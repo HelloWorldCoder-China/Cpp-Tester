@@ -9,11 +9,11 @@
 > 5.打开程序，按提示输入内容，以图为例![填写图例](https://github.com/user-attachments/assets/02b23d46-4d13-4232-8d30-82d21d5d9f77)  
 > 6.等待并查看测试结果  
 > **7.Tester.set的使用**  
-> ```
+> 
 > 1.在程序指定的目录下创建Tester.set文件  
 > 2.在文件里依次输入选项，用;隔开![设置式例](https://github.com/user-attachments/assets/25efdd21-6850-4a28-b7e7-4ffdc60c9f5d)  
 > 3.启动程序  
-> ```
+> 
 ### 下载方法  
 > 1.打开Actions  
 > 2.选择与你操作系统对应的标签  
