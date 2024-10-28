@@ -28,6 +28,9 @@ jobs:
     - name: Build
       run: |
         pyinstaller BuildMe.py
+    - name: Copy License
+      run: |
+        copy LICENSE dist/BuildMe/LICENSE
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
