@@ -16,19 +16,20 @@ try:
             settings=setting_data.split(";")
             print(settings)
             path=settings[0]
-            lines=int(settings[1])
+            linesdefult=int(settings[1])
             timebetwin=float(settings[2])
             optype=settings[3]
-            run_file=int(settings[4])
+            ignore_end_n=settings[4]
+            run_file=int(settings[5])
             if run_file==1:
-                time_limit=float(settings[5])
+                time_limit=float(settings[6])
+                file_name=settings[7]
+                if optype=="2":
+                    points=int(settings[8])
+            else:
                 file_name=settings[6]
                 if optype=="2":
                     points=int(settings[7])
-            else:
-                file_name=settings[5]
-                if optype=="2":
-                    points=int(settings[6])
             filedset=True
             print("[Setting Loaded]")
     except FileNotFoundError:
