@@ -22,10 +22,11 @@ try:
             ignore_end_n=settings[4]
             run_file=int(settings[5])
             if run_file==1:
-                time_limit=float(settings[6])
-                file_name=settings[7]
+                compiler=settings[6]
+                time_limit=float(settings[7])
+                file_name=settings[8]
                 if optype=="2":
-                    points=int(settings[8])
+                    points=int(settings[9])
             else:
                 file_name=settings[6]
                 if optype=="2":
@@ -45,6 +46,7 @@ try:
         ignore_end_n=input("是否要忽略末尾换行符(Y/N，务必大写)：")
         run_file=int(input("是否需要编译、运行C++文件？输入1编译、运行，输入2不编译、不运行："))
         if run_file==1:
+            compiler=input("请输入编译器路径，若无特殊需求，请填写g++：")
             time_limit=float(input("请输入时间限制："))
     if optype=="1":
         pass_this=False
@@ -52,7 +54,7 @@ try:
             file_name=input("测试文件名：")
         if run_file==1:
             print("[Compileting]")
-            os.system("cd {} && g++ -o {}-test {}.cpp".format(path,file_name,file_name))
+            os.system("cd {} && {} -o {}-test {}.cpp".format(path,compiler,file_name,file_name))
             print("[Running]")
             comprogpath=glob.glob(path+"/"+file_name+"-test*",recursive=True)[0]
             output=open(path+"/"+file_name+".out","w+",encoding="utf-8")
@@ -112,7 +114,7 @@ try:
         big_w=0
         if run_file==1:
             print("[Compileting Program]File Name：{}".format(file_name.format("")))
-            os.system("cd {} && g++ -o {}-test {}.cpp".format(path+"/",file_name.format(""),path+"/"+file_name.format("")))
+            os.system("cd {} && {} -o {}-test {}.cpp".format(path+"/",compiler,file_name.format(""),path+"/"+file_name.format("")))
         for i in range(1,points+1):
             pass_this=False
             if run_file==1:
