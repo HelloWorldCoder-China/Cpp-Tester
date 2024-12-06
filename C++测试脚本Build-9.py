@@ -27,7 +27,7 @@ try:
     print("你可以在{}下创建MutiQuest.set配置文件以启用多试题并设置".format(os.path.dirname(os.path.abspath(__file__))))
     try:
         MutiQuest=open("MutiQuest.set","r",encoding="utf-8")
-        TestNum=int(MutiQuest.readline())
+        TestNum=int(MutiQuest.readline().split("\n")[0])
         for i in range(TestNum):
             print("[Testing] Quest No.{}".format(i+1))
             with open("MQLine.set","w+",encoding="utf-8") as Line:
