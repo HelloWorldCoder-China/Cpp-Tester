@@ -33,7 +33,7 @@ jobs:
         cp LICENSE dist/BuildMe/LICENSE
         cp README.md dist/BuildMe/README.md
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.1
       with:
         name: C++Tester
         path: dist/*
