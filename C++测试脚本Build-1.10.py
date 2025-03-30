@@ -24,7 +24,8 @@ try:
     # 配置输入
     def infoinput():
         # 全局变量化
-        global linesdefult,lines,timebetwin,optype,ignore_end_n,run_file,file_name,points,compiler,time_limit
+        global linesdefult,lines,timebetwin,optype,ignore_end_n,run_file,file_name,points,compiler,time_limit,path
+        path=input("测试目录：")
         linesdefult=int(input("测试行数，0为无限测，-1为自动决定："))
         lines=linesdefult
         timebetwin=float(input("测试时间间隔："))
