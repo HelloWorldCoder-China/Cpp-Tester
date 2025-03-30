@@ -1,4 +1,5 @@
 # C++测试器
+**页面访问量：**[![Page Views Count](https://badges.toozhao.com/badges/01JQKEW7N1NSCEEV229H7QH5F6/orange.svg)](https://badges.toozhao.com/stats/01JQKEW7N1NSCEEV229H7QH5F6 "访问统计")
 **这是一个简单易用的C++测试器，可以帮助你快速测试你的代码**
 ## 请注意，由于本软件未签名，可能被误报为Win64:MalWare-gen（流氓软件）所以请在安全软件中信任此文件夹
 ### 版权信息请参考LICENSE文件，这个软件使用一个[**修改过的**MIT证书](LICENSE)
