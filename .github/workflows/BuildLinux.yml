@@ -27,11 +27,11 @@ jobs:
         pip install -r requirements.txt
     - name: Build
       run: |
-        pyinstaller BuildMe.py
+        pyinstaller C++Tester.py
     - name: Copy License
       run: |
-        cp LICENSE dist/BuildMe/LICENSE
-        cp README.md dist/BuildMe/README.md
+        cp LICENSE dist/C++Tester/LICENSE
+        cp README.md dist/C++Tester/README.md
     - name: Upload Artifact
       uses: actions/upload-artifact@v4.6.1
       with:
