@@ -12,15 +12,19 @@ try:
     import glob
     print("\r正在导入库..... \\ shutil",end="")
     import shutil as sh
+    print("\r正在导入库...... - webbrowser",end="")
+    import webbrowser as wb
     print("  库导入成功!")
 
     # 开门见山
-    print("C++测试器 Build-1.10  HelloWorldCoder(-China)制作  你只拥有此软件的永久使用、复制权\n详见软件目录下的LICENSE文件")
+    print("""##########################################################################################################
+          C++测试器 Build-1.10  HelloWorldCoder(-China)制作
+          你只拥有此软件的永久使用、复制权详见软件目录下的LICENSE文件""")
     programdir=os.path.dirname(os.path.abspath(__file__))
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     print("你可以在{}下创建Tester.set配置文件以使用统一配置多次测试".format(os.path.dirname(os.path.abspath(__file__))))
     print("你可以在{}下创建MutiQuest.set配置文件以启用多试题并设置".format(os.path.dirname(os.path.abspath(__file__))))
-    
+
     # 配置输入
     def infoinput():
         # 全局变量化
@@ -30,7 +34,7 @@ try:
         lines=linesdefult
         timebetwin=float(input("测试时间间隔："))
         optype=input("请选择操作：输入1进行单次测试，输入2进行多次测试，输入其他退出：")
-        ignore_end_n=input("是否要忽略末尾换行符(Y/N，务必大写)：")
+        ignore_end_n=input("是否要忽略末尾换行符(Y/N)：").upper()
         run_file=int(input("是否需要编译、运行C++文件？输入1编译、运行，输入2不编译、不运行："))
         if run_file==1:
             compiler=input("请输入编译器路径，若无特殊需求，请填写g++：")
@@ -40,6 +44,72 @@ try:
         if optype=="2":
             file_name=input("测试文件名格式（填序号的位置用{}替代，如：abc[1]->abc[{}],abc1->abc{}）：")
             points=int(input("请输入样例点总数："))
+
+    # 菜单
+    def menu():
+        print("""###########################################################################################################
+        欢迎使用C++测试器,请输入你要执行的操作: 
+           1.开始测试
+           2.设置多次测试参数
+           3.打开本软件的官网
+           4.退出""")
+        choice=input("请输入你的选择：")
+        if choice=="1":
+            pass
+        elif choice=="2":
+            settingtype=input("请输入你的要编辑的配置文件(1.单题/2.多题): ")
+            settingoptype=input("请选择操作(1.更改配置/2.删除配置)")
+            if settingtype=="1":
+                if settingoptype=="1":
+                    infoinput()
+                    with open(f"{os.path.dirname(os.path.abspath(__file__))}/Tester.set","w+",encoding="utf-8") as f:
+                        if run_file==1:
+                            if optype=="1":
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name}")
+                            if optype=="2":
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};{points}")
+                        else:
+                            if optype=="1":
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name}")
+                            if optype=="2":
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};{points}")
+                else:
+                    os.remove(f"{os.path.dirname(os.path.abspath(__file__))}/Tester.set")
+                    print("配置文件已删除")
+            elif settingtype=="2":
+                if settingoptype=="1":
+                    quests=int(input("请输入要测试的题目数量: "))
+                    with open(f"{os.path.dirname(os.path.abspath(__file__))}/MutiQuest.set","w+",encoding="utf-8") as f:
+                        f.write(f"{quests}\n")
+                    for i in range(quests):
+                        infoinput()
+                        with open(f"{os.path.dirname(os.path.abspath(__file__))}/MutiQuest.set","a+",encoding="utf-8") as f:
+                            if run_file==1:
+                                if optype=="1":
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name}")
+                                if optype=="2":
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};{points}")
+                            else:
+                                if optype=="1":
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name}")
+                                if optype=="2":
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};{points}")
+                            f.write("\n")
+                else:
+                    os.remove(f"{os.path.dirname(os.path.abspath(__file__))}/MutiQuest.set")
+                    print("配置文件已删除")
+            menu()
+        elif choice=="3":
+            wb.open_new_tab("https://github.com/HelloWorldCoder-China/Cpp-Tester")
+            print("已打开官网")
+            menu()
+        elif choice=="4":
+            print("程序已退出")
+            exit(0)
+        else:
+            print("输入错误，请重新输入")
+            menu()
+    menu()
     
     # 主测试函数
     def main_testing_process():
