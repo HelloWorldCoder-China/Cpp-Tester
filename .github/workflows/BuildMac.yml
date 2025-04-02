@@ -3,8 +3,6 @@ name: MacOS(Unix ARM)
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 permissions:
   contents: read
