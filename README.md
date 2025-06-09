@@ -22,3 +22,6 @@
 > 2.选择与你操作系统对应的标签  
 > 3.下载最新一次构建即可
 > 提示:你也可以在Release中选择与你系统匹配的包下载
+
+### 状态
+![Alt](https://repobeats.axiom.co/api/embed/53005174f0020630a2d628785d37dac269f383fd.svg "项目状态,去repobeats.axiom.co给自己搞一个")
