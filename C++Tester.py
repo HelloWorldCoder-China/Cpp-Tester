@@ -18,7 +18,7 @@ try:
 
     # 开门见山
     print("""##########################################################################################################
-          C++测试器 Build-1.10  HelloWorldCoder(-China)制作
+          C++测试器 Build-1.11-Bugfix1-MutiLine&Compilit  HelloWorldCoder(-China)制作
           你只拥有此软件的永久使用、复制权详见软件目录下的LICENSE文件""")
     programdir=os.path.dirname(os.path.abspath(__file__))
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -65,16 +65,19 @@ try:
                     with open(f"{os.path.dirname(os.path.abspath(__file__))}/Tester.set","w+",encoding="utf-8") as f:
                         if run_file==1:
                             if optype=="1":
-                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name}")
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};")
                             if optype=="2":
-                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};{points}")
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};{points};")
                         else:
                             if optype=="1":
-                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name}")
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};")
                             if optype=="2":
-                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};{points}")
+                                f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};{points};")
                 else:
-                    os.remove(f"{os.path.dirname(os.path.abspath(__file__))}/Tester.set")
+                    try:
+                        os.remove(f"{os.path.dirname(os.path.abspath(__file__))}/Tester.set")
+                    except Exception as e:
+                        print(f"[Error] Delete FAILED Check if file exsits: {e}")
                     print("配置文件已删除")
             elif settingtype=="2":
                 if settingoptype=="1":
@@ -86,17 +89,20 @@ try:
                         with open(f"{os.path.dirname(os.path.abspath(__file__))}/MutiQuest.set","a+",encoding="utf-8") as f:
                             if run_file==1:
                                 if optype=="1":
-                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name}")
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};")
                                 if optype=="2":
-                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};{points}")
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{compiler};{time_limit};{file_name};{points};")
                             else:
                                 if optype=="1":
-                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name}")
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};")
                                 if optype=="2":
-                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};{points}")
+                                    f.write(f"{path};{linesdefult};{timebetwin};{optype};{ignore_end_n};{run_file};{file_name};{points};")
                             f.write("\n")
                 else:
-                    os.remove(f"{os.path.dirname(os.path.abspath(__file__))}/MutiQuest.set")
+                    try:
+                        os.remove(f"{os.path.dirname(os.path.abspath(__file__))}/MutiQuest.set")
+                    except Exception as e:
+                        print(f"[Error] Delete FAILED Check if file exsits: {e}")
                     print("配置文件已删除")
             menu()
         elif choice=="3":
@@ -120,7 +126,12 @@ try:
                 print("[Compileting]")
                 os.system("cd {} && {} -o {}-test {}.cpp".format(path,compiler,file_name,file_name))
                 print("[Running]")
-                comprogpath=glob.glob(path+"/"+file_name+"-test*",recursive=True)[0]
+                try:
+                    comprogpath=glob.glob(path+"/"+file_name+"-test*",recursive=True)[0]
+                except Exception as e:
+                    print("[CE]The Program Failed To Build,Check Your Code.")
+                    flag=False
+                    pass_this=True
                 output=open(path+"/"+file_name+".out","w+",encoding="utf-8")
                 input_=open(path+"/"+file_name+".in","r+",encoding="utf-8")
                 error_=open(path+"/"+file_name+".ERR","w+",encoding="utf-8")
@@ -144,7 +155,7 @@ try:
             try:
                 output=open(path+"/"+file_name+".out","r+",encoding="utf-8")
             except FileNotFoundError:
-                print("[Error]Output File Not Found!")
+                print("[RE]Output File Not Found! Might be a CHASH,Check Your Code!")
                 flag=False
                 pass_this=True
             point_w=0
@@ -188,7 +199,12 @@ try:
                     os.makedirs(path+"/testpoint"+str(i),exist_ok=True)
                     os.chdir(path+"/testpoint"+str(i))
                     print("[Copying Test Point Files]Test Point：{}".format(i))
-                    comprogpath=glob.glob(path+"/"+file_name.format("")+"-test*",recursive=True)[0]
+                    try:
+                        comprogpath=glob.glob(path+"/"+file_name.format("")+"-test*",recursive=True)[0]
+                    except Exception as e:
+                        print("[CE]The Program Failed To Build,Check Your Code.")
+                        flag=False
+                        pass_this=True
                     sh.copy2(comprogpath,path+"/testpoint"+str(i)+"/"+os.path.basename(comprogpath))
                     sh.copy2(path+"/"+file_name.format(i)+".ans",path+"/testpoint"+str(i)+"/"+file_name.format("")+".ans") # 拷贝文件
                     sh.copy2(path+"/"+file_name.format(i)+".in",path+"/testpoint"+str(i)+"/"+file_name.format("")+".in")
@@ -214,7 +230,7 @@ try:
                     try:
                         output=open(path+"/testpoint"+str(i)+"/"+file_name.format("")+".out","r+",encoding="utf-8")
                     except FileNotFoundError:
-                        print("[Error]Output File Not Found!")
+                        print("[RE]Output File Not Found! Might be a CHASH,Check Your Code!")
                         flag=False
                         pass_this=True
                     print("[Testing Test Point]Test Point：{}".format(i))
@@ -261,7 +277,7 @@ try:
         for i in range(TestNum):
             print("[Testing] Quest No.{}".format(i+1))
             with open("MQLine.set","w+",encoding="utf-8") as Line:
-                Line.write(MutiQuest.readline())
+                Line.write(MutiQuest.readline().strip())
             with open("MQLine.set","r+",encoding="utf-8") as setting:
                 print("[Loading Setting]")
                 setting_data=setting.readline()
